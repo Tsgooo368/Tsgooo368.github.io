@@ -3,10 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
     <title>KinoDB - Premium Movie & Anime</title>
+    <meta name="description" content="KinoDB - Хамгийн сүүлийн үеийн кино болон анимэг өндөр чанартайгаар үзээрэй. Interstellar, One Piece болон бусад шилдэг бүтээлүүд энд бий.">
+    
+    <link rel="canonical" href="https://yourwebsite.mn/">
     
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "KinoDB",
+      "url": "https://yourwebsite.mn/",
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": "https://yourwebsite.mn/search?q={search_term_string}",
+        "query-input": "required name=search_term_string"
+      }
+    }
+    </script>
 
     <style>
         /* --- CSS VARIABLES & RESET --- */
@@ -57,6 +75,7 @@
             align-items: center;
             gap: 10px;
             cursor: pointer;
+            text-decoration: none;
         }
 
         .logo i { color: var(--primary); }
@@ -211,7 +230,7 @@
         }
 
         .category-section {
-            margin-bottom: 60px; /* Хэсгүүд хоорондын зай */
+            margin-bottom: 60px;
         }
 
         .section-title {
@@ -334,22 +353,85 @@
             justify-content: space-between;
         }
 
+        /* --- FOOTER (Шинээр нэмэгдсэн SEO-д ээлтэй хэсэг) --- */
+        footer {
+            background-color: var(--bg-card);
+            padding: 50px 5% 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            margin-top: 40px;
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 40px;
+        }
+
+        .footer-brand p {
+            color: var(--text-muted);
+            font-size: 14px;
+            margin-top: 10px;
+            max-width: 300px;
+        }
+
+        .footer-links-group {
+            display: flex;
+            gap: 60px;
+            flex-wrap: wrap;
+        }
+
+        .footer-links h4 {
+            font-size: 16px;
+            margin-bottom: 15px;
+            color: var(--text-main);
+        }
+
+        .footer-links ul {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+
+        .footer-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 14px;
+            transition: var(--transition);
+        }
+
+        .footer-links a:hover {
+            color: var(--primary);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            color: var(--text-muted);
+            font-size: 13px;
+        }
+
         /* --- RESPONSIVE --- */
         @media (max-width: 768px) {
             nav, .search-box { display: none; }
             .hero-content h1 { font-size: 36px; }
+            .footer-links-group { gap: 30px; }
         }
     </style>
 </head>
 <body>
 
     <header>
-        <div class="logo">
+        <a href="/" class="logo">
             <i class="fas fa-play-circle"></i> Kino<span>DB</span>
-        </div>
+        </a>
         <nav>
             <ul>
-                <li><a href="#" class="active">Нүүр</a></li>
+                <li><a href="/" class="active">Нүүр</a></li>
                 <li><a href="#anime">Анимэ</a></li>
                 <li><a href="#movies">Кино</a></li>
             </ul>
@@ -383,14 +465,14 @@
         <section class="category-section" id="anime">
             <div class="section-title">
                 <h2><i class="fas fa-fire"></i> Трэнд болж буй Анимэ</h2>
-                <a href="#" class="view-all">Бүгдийг үзэх</a>
+                <a href="#anime" class="view-all">Бүгдийг үзэх</a>
             </div>
 
             <div class="movie-grid">
                 <div class="movie-card">
                     <div class="poster-wrapper">
                         <span class="card-rating"><i class="fas fa-star"></i> 9.1</span>
-                        <img src="https://images.unsplash.com/photo-1618336753974-aae8e04506aa?q=80&w=400" alt="Anime">
+                        <img src="https://images.unsplash.com/photo-1618336753974-aae8e04506aa?q=80&w=400" alt="Attack on Titan Anime">
                         <div class="play-icon"><i class="fas fa-play"></i></div>
                     </div>
                     <div class="card-info">
@@ -405,7 +487,7 @@
                 <div class="movie-card">
                     <div class="poster-wrapper">
                         <span class="card-rating"><i class="fas fa-star"></i> 8.8</span>
-                        <img src="https://images.unsplash.com/photo-1607604276583-eef5d076aa5f?q=80&w=400" alt="Anime">
+                        <img src="https://images.unsplash.com/photo-1607604276583-eef5d076aa5f?q=80&w=400" alt="Demon Slayer Anime">
                         <div class="play-icon"><i class="fas fa-play"></i></div>
                     </div>
                     <div class="card-info">
@@ -420,7 +502,7 @@
                 <div class="movie-card">
                     <div class="poster-wrapper">
                         <span class="card-rating"><i class="fas fa-star"></i> 8.7</span>
-                        <img src="https://images.unsplash.com/photo-1578632767115-351597cf2477?q=80&w=400" alt="Anime">
+                        <img src="https://images.unsplash.com/photo-1578632767115-351597cf2477?q=80&w=400" alt="Jujutsu Kaisen Anime">
                         <div class="play-icon"><i class="fas fa-play"></i></div>
                     </div>
                     <div class="card-info">
@@ -435,7 +517,7 @@
                 <div class="movie-card">
                     <div class="poster-wrapper">
                         <span class="card-rating"><i class="fas fa-star"></i> 8.9</span>
-                        <img src="https://images.unsplash.com/photo-1627389955805-385a86657997?q=80&w=400" alt="Anime">
+                        <img src="https://images.unsplash.com/photo-1627389955805-385a86657997?q=80&w=400" alt="One Piece Anime">
                         <div class="play-icon"><i class="fas fa-play"></i></div>
                     </div>
                     <div class="card-info">
@@ -452,14 +534,14 @@
         <section class="category-section" id="movies">
             <div class="section-title">
                 <h2><i class="fas fa-film"></i> Шилдэг Уран сайхны кино</h2>
-                <a href="#" class="view-all">Бүгдийг үзэх</a>
+                <a href="#movies" class="view-all">Бүгдийг үзэх</a>
             </div>
 
             <div class="movie-grid">
                 <div class="movie-card">
                     <div class="poster-wrapper">
                         <span class="card-rating"><i class="fas fa-star"></i> 8.5</span>
-                        <img src="https://images.unsplash.com/photo-1541562232579-51fca3bb4b0f?q=80&w=400" alt="Movie">
+                        <img src="https://images.unsplash.com/photo-1541562232579-51fca3bb4b0f?q=80&w=400" alt="Oppenheimer Movie">
                         <div class="play-icon"><i class="fas fa-play"></i></div>
                     </div>
                     <div class="card-info">
@@ -474,7 +556,7 @@
                 <div class="movie-card">
                     <div class="poster-wrapper">
                         <span class="card-rating"><i class="fas fa-star"></i> 9.0</span>
-                        <img src="https://images.unsplash.com/photo-1478720568477-152d9b164e26?q=80&w=400" alt="Movie">
+                        <img src="https://images.unsplash.com/photo-1478720568477-152d9b164e26?q=80&w=400" alt="The Dark Knight Movie">
                         <div class="play-icon"><i class="fas fa-play"></i></div>
                     </div>
                     <div class="card-info">
@@ -489,7 +571,7 @@
                 <div class="movie-card">
                     <div class="poster-wrapper">
                         <span class="card-rating"><i class="fas fa-star"></i> 8.8</span>
-                        <img src="https://images.unsplash.com/photo-1534447677768-be436bb09401?q=80&w=400" alt="Movie">
+                        <img src="https://images.unsplash.com/photo-1534447677768-be436bb09401?q=80&w=400" alt="Inception Movie">
                         <div class="play-icon"><i class="fas fa-play"></i></div>
                     </div>
                     <div class="card-info">
@@ -504,7 +586,7 @@
                 <div class="movie-card">
                     <div class="poster-wrapper">
                         <span class="card-rating"><i class="fas fa-star"></i> 8.7</span>
-                        <img src="https://images.unsplash.com/photo-1626814026160-2237a95fc5a0?q=80&w=400" alt="Movie">
+                        <img src="https://images.unsplash.com/photo-1626814026160-2237a95fc5a0?q=80&w=400" alt="The Matrix Movie">
                         <div class="play-icon"><i class="fas fa-play"></i></div>
                     </div>
                     <div class="card-info">
@@ -519,6 +601,40 @@
         </section>
 
     </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-brand">
+                <a href="/" class="logo">
+                    <i class="fas fa-play-circle"></i> Kino<span>DB</span>
+                </a>
+                <p>Таны очих дуртай хамгийн шилдэг кино болон анимэ мэдээллийн сан. Шинэ содон бүхнийг нэг дороос.</p>
+            </div>
+            
+            <div class="footer-links-group">
+                <div class="footer-links">
+                    <h4>Ангилал</h4>
+                    <ul>
+                        <li><a href="#anime">Шилдэг Анимэ</a></li>
+                        <li><a href="#movies">Шилдэг Кино</a></li>
+                        <li><a href="#">Одоо гарч буй</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Тусламж</h4>
+                    <ul>
+                        <li><a href="#">Бидний тухай</a></li>
+                        <li><a href="#">Холбоо барих</a></li>
+                        <li><a href="#">Үйлчилгээний нөхцөл</a></li>
+                        <li><a href="#">Нууцлалын бодлого</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            &copy; 2026 KinoDB. Бүх эрх хуулиар хамгаалагдсан.
+        </div>
+    </footer>
 
 </body>
 </html>
