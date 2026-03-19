@@ -4,12 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    <title>KinoDB - Premium Movie & Anime</title>
-    <meta name="description" content="KinoDB - Хамгийн сүүлийн үеийн кино болон анимэг өндөр чанартайгаар үзээрэй. Interstellar, One Piece болон бусад шилдэг бүтээлүүд энд бий.">
+    <title>KinoDB - Premium Movie & Anime: Хамгийн сүүлийн үеийн Кино, Анимэ Үзэх Цэг</title>
+    <meta name="description" content="KinoDB платформ дээр хамгийн сүүлийн үеийн Premium кино болон анимэг өндөр чанартайгаар үзээрэй. Interstellar, One Piece, Demon Slayer зэрэг шилдэг бүтээлүүд энд бий.">
+    <meta name="keywords" content="KinoDB, Кино үзэх, Анимэ үзэх, Premium Movies, Ultra HD Anime, Монгол кино сан">
+    
+    <link rel="apple-touch-icon" href="logo.png">
     
     <link rel="canonical" href="https://yourwebsite.mn/">
     
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <script type="application/ld+json">
@@ -27,612 +30,324 @@
     </script>
 
     <style>
-        /* --- CSS VARIABLES & RESET --- */
+        /* --- CSS VARIABLES & CORE --- */
         :root {
             --primary: #8a2be2;
-            --primary-hover: #9b4dff;
+            --primary-glow: rgba(138, 43, 226, 0.5);
             --bg-dark: #090a0f;
             --bg-card: #15161e;
             --text-main: #ffffff;
             --text-muted: #a0a5b5;
-            --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            --transition: 0.4s cubic-bezier(0.2, 1, 0.3, 1);
         }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Poppins', sans-serif;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
+        body { background-color: var(--bg-dark); color: var(--text-main); overflow-x: hidden; line-height: 1.7; }
+        a { text-decoration: none; color: inherit; }
 
-        body {
-            background-color: var(--bg-dark);
-            color: var(--text-main);
-            overflow-x: hidden;
-            line-height: 1.6;
-        }
-
-        /* --- NAVBAR --- */
+        /* --- NAVIGATION (Apple Style Blur) --- */
         header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 15px 5%;
-            background: rgba(9, 10, 15, 0.85);
-            backdrop-filter: blur(15px);
-            position: fixed;
-            width: 100%;
-            top: 0;
-            z-index: 1000;
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 15px 6%; background: rgba(9, 10, 15, 0.8);
+            backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+            position: fixed; width: 100%; top: 0; z-index: 1000;
             border-bottom: 1px solid rgba(255, 255, 255, 0.05);
         }
 
-        .logo {
-            font-size: 26px;
-            font-weight: 700;
-            color: var(--text-main);
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            cursor: pointer;
-            text-decoration: none;
-        }
-
-        .logo i { color: var(--primary); }
+        .logo { font-size: 28px; font-weight: 700; display: flex; align-items: center; gap: 10px; }
+        .logo i { color: var(--primary); font-size: 32px; }
         .logo span { color: var(--primary); }
 
-        nav ul {
-            display: flex;
-            list-style: none;
-            gap: 30px;
-        }
+        nav ul { display: flex; list-style: none; gap: 35px; }
+        nav ul li a { color: var(--text-muted); font-weight: 500; font-size: 15px; transition: var(--transition); position: relative; }
+        nav ul li a::after { content: ''; position: absolute; bottom: -5px; left: 0; width: 0; height: 2px; background: var(--primary); transition: 0.3s; }
+        nav ul li a:hover { color: #fff; }
+        nav ul li a:hover::after { width: 100%; }
+        nav ul li a.active { color: #fff; }
 
-        nav ul li a {
-            text-decoration: none;
-            color: var(--text-muted);
-            font-weight: 500;
-            font-size: 15px;
-            transition: var(--transition);
+        .nav-right { display: flex; align-items: center; gap: 20px; }
+        .search-container { position: relative; }
+        .search-container input {
+            background: rgba(255, 255, 255, 0.08); border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 10px 15px 10px 45px; border-radius: 25px; color: white; outline: none; width: 220px; transition: var(--transition);
         }
-
-        nav ul li a:hover, nav ul li a.active {
-            color: var(--text-main);
-            text-shadow: 0 0 10px rgba(138, 43, 226, 0.5);
-        }
-
-        .nav-actions {
-            display: flex;
-            align-items: center;
-            gap: 20px;
-        }
-
-        .search-box {
-            position: relative;
-        }
-
-        .search-box input {
-            background: rgba(255, 255, 255, 0.07);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            padding: 8px 15px 8px 40px;
-            border-radius: 20px;
-            color: white;
-            outline: none;
-            width: 200px;
-            transition: var(--transition);
-        }
-
-        .search-box input:focus {
-            width: 280px;
-            border-color: var(--primary);
-            background: rgba(255, 255, 255, 0.12);
-        }
-
-        .search-box i {
-            position: absolute;
-            left: 15px;
-            top: 50%;
-            transform: translateY(-50%);
-            color: var(--text-muted);
-        }
-
-        .login-btn {
-            background: var(--primary);
-            color: white;
-            border: none;
-            padding: 8px 22px;
-            border-radius: 20px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: var(--transition);
-        }
-
-        .login-btn:hover {
-            transform: scale(1.05);
-            box-shadow: 0 0 20px rgba(138, 43, 226, 0.4);
-        }
+        .search-container input:focus { width: 300px; border-color: var(--primary); box-shadow: 0 0 15px var(--primary-glow); }
+        .search-container i { position: absolute; left: 18px; top: 50%; transform: translateY(-50%); color: var(--text-muted); }
 
         /* --- HERO SECTION --- */
         .hero {
-            height: 80vh;
-            background: linear-gradient(to bottom, rgba(9, 10, 15, 0.3), var(--bg-dark)),
-                        url('https://images.unsplash.com/photo-1541562232579-51fca3bb4b0f?q=80&w=1920&auto=format&fit=crop') center/cover;
-            display: flex;
-            align-items: center;
-            padding: 0 5%;
-            position: relative;
+            height: 90vh;
+            background: linear-gradient(to right, var(--bg-dark) 20%, transparent 80%),
+                        linear-gradient(to top, var(--bg-dark), transparent),
+                        url('https://images.unsplash.com/photo-1536440136628-849c177e76a1?q=80&w=1920&auto=format&fit=crop') center/cover;
+            display: flex; align-items: center; padding: 0 6%;
         }
 
-        .hero-content {
-            z-index: 10;
-            max-width: 700px;
-            animation: fadeInUp 1s ease;
-        }
+        .hero-content { max-width: 850px; animation: fadeInUp 1.2s ease; }
+        @keyframes fadeInUp { from { opacity: 0; transform: translateY(40px); } to { opacity: 1; transform: translateY(0); } }
 
-        @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(30px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
+        .hero-badge { background: var(--primary); padding: 6px 16px; border-radius: 6px; font-weight: 700; font-size: 12px; letter-spacing: 1px; margin-bottom: 25px; display: inline-block; }
+        .hero-content h1 { font-size: clamp(36px, 6vw, 68px); margin-bottom: 25px; line-height: 1.1; font-weight: 700; }
+        .hero-content p { color: var(--text-muted); font-size: 19px; margin-bottom: 40px; max-width: 650px; text-shadow: 1px 1px 2px rgba(0,0,0,0.5); }
 
-        .badges {
-            display: flex;
-            gap: 10px;
-            margin-bottom: 20px;
-        }
+        .btn-group { display: flex; gap: 20px; margin-bottom: 35px; }
+        .btn { padding: 14px 40px; border-radius: 10px; font-weight: 600; cursor: pointer; border: none; transition: var(--transition); display: flex; align-items: center; gap: 10px; font-size: 16px; }
+        .btn-play { background: var(--primary); color: white; }
+        .btn-play:hover { transform: scale(1.05); box-shadow: 0 10px 25px var(--primary-glow); }
+        .btn-more { background: rgba(255,255,255,0.1); color: white; backdrop-filter: blur(10px); }
+        .btn-more:hover { background: rgba(255,255,255,0.2); }
 
-        .badges span {
-            padding: 5px 12px;
-            border-radius: 4px;
-            font-size: 12px;
-            font-weight: 700;
-            text-transform: uppercase;
-        }
+        /* --- SOCIAL SHARE --- */
+        .social-share { display: flex; align-items: center; gap: 15px; }
+        .share-item { width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; background: rgba(255,255,255,0.1); transition: 0.3s; color: white; }
+        .share-item:hover { transform: translateY(-5px); background: var(--primary); }
 
-        .badge-hd { background: #ffcc00; color: #000; }
-        .badge-genre { background: rgba(255,255,255,0.15); backdrop-filter: blur(5px); }
+        /* --- SEO CONTENT SECTION (250+ Words) --- */
+        .seo-section { padding: 100px 6%; background: var(--bg-card); }
+        .seo-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 50px; }
+        .seo-box h2 { color: var(--primary); margin-bottom: 25px; font-size: 26px; }
+        .seo-box p { color: var(--text-muted); margin-bottom: 20px; text-align: justify; font-size: 15px; }
 
-        .hero-content h1 {
-            font-size: clamp(32px, 5vw, 64px);
-            margin-bottom: 15px;
-            line-height: 1.1;
-        }
+        /* --- MOVIE SECTION --- */
+        main { padding: 80px 6%; }
+        .section-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 40px; }
+        .section-header h2 { font-size: 28px; display: flex; align-items: center; gap: 15px; }
+        .section-header h2::before { content: ''; width: 5px; height: 30px; background: var(--primary); border-radius: 10px; }
+        
+        .movie-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); gap: 30px; }
+        .movie-card { background: #1a1b24; border-radius: 15px; overflow: hidden; transition: var(--transition); position: relative; }
+        .movie-card:hover { transform: translateY(-15px); box-shadow: 0 20px 40px rgba(0,0,0,0.6); }
 
-        .hero-content p {
-            color: var(--text-muted);
-            margin-bottom: 30px;
-            font-size: 18px;
-        }
+        .poster { position: relative; height: 340px; overflow: hidden; }
+        .poster img { width: 100%; height: 100%; object-fit: cover; transition: 0.6s ease; }
+        .movie-card:hover .poster img { transform: scale(1.1); }
+        
+        .rating-badge { position: absolute; top: 15px; left: 15px; background: rgba(0,0,0,0.8); color: #ffcc00; padding: 5px 10px; border-radius: 8px; font-weight: 700; font-size: 13px; z-index: 2; border: 1px solid rgba(255,204,0,0.3); }
+        
+        .play-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(138, 43, 226, 0.4); display: flex; justify-content: center; align-items: center; opacity: 0; transition: 0.3s; }
+        .movie-card:hover .play-overlay { opacity: 1; }
+        .play-btn-circle { width: 60px; height: 60px; background: #fff; color: var(--primary); border-radius: 50%; display: flex; justify-content: center; align-items: center; font-size: 24px; box-shadow: 0 0 20px #fff; }
 
-        .hero-btns {
-            display: flex;
-            gap: 15px;
-        }
+        .card-details { padding: 20px; }
+        .card-details h3 { font-size: 17px; margin-bottom: 8px; font-weight: 600; }
+        .card-info-row { display: flex; justify-content: space-between; color: var(--text-muted); font-size: 13px; }
 
-        .btn {
-            padding: 12px 35px;
-            border-radius: 8px;
-            font-weight: 600;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            transition: var(--transition);
-            border: none;
-        }
+        /* --- FOOTER --- */
+        footer { padding: 80px 6% 40px; background: #07080c; border-top: 1px solid rgba(255,255,255,0.05); }
+        .footer-main { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 50px; margin-bottom: 60px; }
+        .footer-desc p { color: var(--text-muted); margin-top: 20px; max-width: 350px; }
+        .footer-links h4 { margin-bottom: 25px; font-size: 18px; }
+        .footer-links ul { list-style: none; }
+        .footer-links li { margin-bottom: 12px; }
+        .footer-links a { color: var(--text-muted); font-size: 14px; transition: 0.3s; }
+        .footer-links a:hover { color: var(--primary); padding-left: 8px; }
 
-        .btn-main { background: var(--primary); color: white; }
-        .btn-sec { background: rgba(255,255,255,0.1); color: white; backdrop-filter: blur(10px); }
+        .footer-bottom { text-align: center; padding-top: 40px; border-top: 1px solid rgba(255,255,255,0.05); color: var(--text-muted); font-size: 13px; }
 
-        .btn:hover { transform: translateY(-3px); opacity: 0.9; }
-
-        /* --- CONTENT SECTIONS --- */
-        main {
-            padding: 50px 5%;
-        }
-
-        .category-section {
-            margin-bottom: 60px;
-        }
-
-        .section-title {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 30px;
-        }
-
-        .section-title h2 {
-            font-size: 24px;
-            border-left: 4px solid var(--primary);
-            padding-left: 15px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .section-title h2 i {
-            color: var(--primary);
-        }
-
-        .view-all {
-            color: var(--text-muted);
-            text-decoration: none;
-            font-size: 14px;
-            transition: var(--transition);
-        }
-
-        .view-all:hover {
-            color: var(--primary);
-        }
-
-        /* --- MOVIE GRID & CARDS --- */
-        .movie-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-            gap: 25px;
-        }
-
-        .movie-card {
-            background: var(--bg-card);
-            border-radius: 12px;
-            overflow: hidden;
-            transition: var(--transition);
-            cursor: pointer;
-            position: relative;
-        }
-
-        .movie-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-        }
-
-        .poster-wrapper {
-            position: relative;
-            height: 300px;
-            overflow: hidden;
-        }
-
-        .poster-wrapper img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: 0.5s ease;
-        }
-
-        .movie-card:hover img { transform: scale(1.1); }
-
-        .card-rating {
-            position: absolute;
-            top: 10px;
-            left: 10px;
-            background: rgba(0,0,0,0.7);
-            color: #ffcc00;
-            padding: 3px 8px;
-            border-radius: 5px;
-            font-weight: 700;
-            font-size: 12px;
-            z-index: 2;
-        }
-
-        .play-icon {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%) scale(0.5);
-            background: var(--primary);
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            opacity: 0;
-            transition: var(--transition);
-        }
-
-        .movie-card:hover .play-icon {
-            opacity: 1;
-            transform: translate(-50%, -50%) scale(1);
-        }
-
-        .card-info {
-            padding: 15px;
-        }
-
-        .card-info h3 {
-            font-size: 15px;
-            margin-bottom: 5px;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-        }
-
-        .card-meta {
-            font-size: 12px;
-            color: var(--text-muted);
-            display: flex;
-            justify-content: space-between;
-        }
-
-        /* --- FOOTER (Шинээр нэмэгдсэн SEO-д ээлтэй хэсэг) --- */
-        footer {
-            background-color: var(--bg-card);
-            padding: 50px 5% 30px;
-            border-top: 1px solid rgba(255, 255, 255, 0.05);
-            margin-top: 40px;
-        }
-
-        .footer-content {
-            display: flex;
-            justify-content: space-between;
-            flex-wrap: wrap;
-            gap: 40px;
-        }
-
-        .footer-brand p {
-            color: var(--text-muted);
-            font-size: 14px;
-            margin-top: 10px;
-            max-width: 300px;
-        }
-
-        .footer-links-group {
-            display: flex;
-            gap: 60px;
-            flex-wrap: wrap;
-        }
-
-        .footer-links h4 {
-            font-size: 16px;
-            margin-bottom: 15px;
-            color: var(--text-main);
-        }
-
-        .footer-links ul {
-            list-style: none;
-        }
-
-        .footer-links li {
-            margin-bottom: 10px;
-        }
-
-        .footer-links a {
-            color: var(--text-muted);
-            text-decoration: none;
-            font-size: 14px;
-            transition: var(--transition);
-        }
-
-        .footer-links a:hover {
-            color: var(--primary);
-        }
-
-        .footer-bottom {
-            text-align: center;
-            margin-top: 40px;
-            padding-top: 20px;
-            border-top: 1px solid rgba(255, 255, 255, 0.05);
-            color: var(--text-muted);
-            font-size: 13px;
-        }
-
-        /* --- RESPONSIVE --- */
-        @media (max-width: 768px) {
-            nav, .search-box { display: none; }
-            .hero-content h1 { font-size: 36px; }
-            .footer-links-group { gap: 30px; }
-        }
+        @media (max-width: 992px) { .footer-main { grid-template-columns: 1fr 1fr; } .hero-content h1 { font-size: 45px; } }
+        @media (max-width: 768px) { nav, .search-container { display: none; } }
     </style>
 </head>
 <body>
 
     <header>
-        <a href="/" class="logo">
-            <i class="fas fa-play-circle"></i> Kino<span>DB</span>
-        </a>
+        <a href="/" class="logo"><i class="fas fa-play-circle"></i> Kino<span>DB</span></a>
         <nav>
             <ul>
                 <li><a href="/" class="active">Нүүр</a></li>
                 <li><a href="#anime">Анимэ</a></li>
                 <li><a href="#movies">Кино</a></li>
+                <li><a href="#about">Бидний тухай</a></li>
             </ul>
         </nav>
-        <div class="nav-actions">
-            <div class="search-box">
+        <div class="nav-right">
+            <div class="search-container">
                 <i class="fas fa-search"></i>
-                <input type="text" placeholder="Кино хайх...">
+                <input type="text" placeholder="Кино, Анимэ хайх...">
             </div>
-            <button class="login-btn">Нэвтрэх</button>
+            <button class="btn btn-play" style="padding: 8px 25px; font-size: 14px; border-radius: 20px;">Нэвтрэх</button>
         </div>
     </header>
 
     <section class="hero">
         <div class="hero-content">
-            <div class="badges">
-                <span class="badge-hd">Ultra HD</span>
-                <span class="badge-genre">Адал явдал • Sci-Fi</span>
+            <span class="hero-badge">PREMIUM CONTENT</span>
+            <h1>Interstellar: Хүн төрөлхтний сүүлчийн найдвар ба орон зайн аялал</h1>
+            <p>Дэлхий ертөнц мөхлийн ирмэгт ирэх үед хэсэг эрэлхэг сансрын нисгэгчид хүн төрөлхтний шинэ гэр болох гаригийг хайхаар орон зай, цаг хугацааны хязгаарыг даван аялдаг. Энэ бол Кристофер Ноланы сод бүтээл юм.</p>
+            
+            <div class="btn-group">
+                <button class="btn btn-play"><i class="fas fa-play"></i> Одоо үзэх</button>
+                <button class="btn btn-more"><i class="fas fa-info-circle"></i> Дэлгэрэнгүй</button>
             </div>
-            <h1>Interstellar</h1>
-            <p>Хүн төрөлхтний оршин тогтнох сүүлчийн найдвар бол өөр гариг дээр гэрээ засах явдал юм. Цаг хугацаа болон орон зайн гайхамшигт аялал.</p>
-            <div class="hero-btns">
-                <button class="btn btn-main"><i class="fas fa-play"></i> Одоо үзэх</button>
-                <button class="btn btn-sec"><i class="fas fa-plus"></i> Хадгалах</button>
+
+            <div class="social-share">
+                <span style="font-size: 14px; color: var(--text-muted);">Хуваалцах:</span>
+                <a href="#" class="share-item"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" class="share-item"><i class="fab fa-twitter"></i></a>
+                <a href="#" class="share-item"><i class="fab fa-instagram"></i></a>
+                <a href="#" class="share-item"><i class="fab fa-telegram-plane"></i></a>
+            </div>
+        </div>
+    </section>
+
+    <section class="seo-section" id="about">
+        <div class="seo-grid">
+            <div class="seo-box">
+                <h2>KinoDB: Таны Premium Кино ба Анимэ Сан</h2>
+                <p>KinoDB платформ нь орчин үеийн кино урлагийн хорхойтнуудад зориулсан хамгийн том бөгөөд хамгийн өндөр чанартай мэдээллийн сан юм. Бид дэлхийн шилдэг кино бүтээлүүд, Холливудын блокбастерууд болон Японы алдарт Анимэ цувралуудыг нэг дороос, хамгийн өндөр чанартайгаар (Ultra HD 4K) үзэх боломжийг хэрэглэгчиддээ олгодог. Манай сан өдөр бүр шинэчлэгдэж, Трэнд болж буй шинэ бүтээлүүдийг цаг алдалгүй хүргэж байна.</p>
+                <p>Бидний зорилго бол кино сонирхогчдод ямар нэгэн хүндрэлгүйгээр өөрийн дуртай бүтээлээ хайж олох, түүний талаарх дэлгэрэнгүй мэдээлэл, жүжигчдийн бүрэлдэхүүн болон мэргэжлийн шүүмжүүдийг унших нөхцөлийг бүрдүүлэх явдал юм. Та манайхаас Interstellar, Inception, Oppenheimer зэрэг оюун ухаан сорьсон шилдэг бүтээлүүдийг олж үзэх боломжтой.</p>
+            </div>
+            <div class="seo-box">
+                <h2>Яагаад KinoDB-г сонгох ёстой вэ?</h2>
+                <p>Кино урлаг бол зөвхөн зугаа цэнгэл бус, харин хүний сэтгэлгээг тэлэх, шинэ ертөнцийг танин мэдэх томоохон хөрөнгө оруулалт юм. Тиймээс бид чанартай агуулгыг эрхэмлэдэг. Манай платформ нь зөвхөн киноны жагсаалт бус, харин кино урлагийн гайхамшгийг мэдрүүлэх Premium туршлагыг санал болгодог. Бид өндөр хурдны сервер, тод дүрслэл болон гайхалтай дууны эффектүүдийг дэмждэг.</p>
+                <p>Анимэ сонирхогчдод зориулж бид хамгийн сүүлийн үеийн Трэнд болж буй One Piece, Attack on Titan, Demon Slayer зэрэг цувралуудыг цаг алдалгүй шинэчлэн оруулдаг. Та хаанаас ч, ямар ч төхөөрөмж дээрээс (iPhone, Android, PC) манай сайтыг ашиглан киноны ертөнцөөр аялах боломжтой. Бид танд хамгийн шилдэг үйлчилгээ, хамгийн баялаг санг амлаж байна. Кино ертөнцийн гайхамшгийг бидэнтэй хамт мэдрээрэй.</p>
             </div>
         </div>
     </section>
 
     <main>
-        
-        <section class="category-section" id="anime">
-            <div class="section-title">
-                <h2><i class="fas fa-fire"></i> Трэнд болж буй Анимэ</h2>
-                <a href="#anime" class="view-all">Бүгдийг үзэх</a>
+        <section id="anime" style="margin-bottom: 80px;">
+            <div class="section-header">
+                <h2>Трэнд болж буй Анимэ</h2>
+                <a href="#" style="color: var(--primary); font-weight: 600;">Бүгдийг үзэх <i class="fas fa-arrow-right"></i></a>
             </div>
-
             <div class="movie-grid">
                 <div class="movie-card">
-                    <div class="poster-wrapper">
-                        <span class="card-rating"><i class="fas fa-star"></i> 9.1</span>
-                        <img src="https://images.unsplash.com/photo-1618336753974-aae8e04506aa?q=80&w=400" alt="Attack on Titan Anime">
-                        <div class="play-icon"><i class="fas fa-play"></i></div>
+                    <div class="poster">
+                        <span class="rating-badge"><i class="fas fa-star"></i> 9.1</span>
+                        <img src="https://images.unsplash.com/photo-1618336753974-aae8e04506aa?q=80&w=400" alt="Attack on Titan Premium Anime">
+                        <div class="play-overlay"><div class="play-btn-circle"><i class="fas fa-play"></i></div></div>
                     </div>
-                    <div class="card-info">
+                    <div class="card-details">
                         <h3>Attack on Titan</h3>
-                        <div class="card-meta">
-                            <span>2023</span>
-                            <span>Action</span>
-                        </div>
+                        <div class="card-info-row"><span>2023</span><span>Шилдэг Анимэ</span></div>
                     </div>
                 </div>
-
                 <div class="movie-card">
-                    <div class="poster-wrapper">
-                        <span class="card-rating"><i class="fas fa-star"></i> 8.8</span>
+                    <div class="poster">
+                        <span class="rating-badge"><i class="fas fa-star"></i> 8.8</span>
                         <img src="https://images.unsplash.com/photo-1607604276583-eef5d076aa5f?q=80&w=400" alt="Demon Slayer Anime">
-                        <div class="play-icon"><i class="fas fa-play"></i></div>
+                        <div class="play-overlay"><div class="play-btn-circle"><i class="fas fa-play"></i></div></div>
                     </div>
-                    <div class="card-info">
+                    <div class="card-details">
                         <h3>Demon Slayer</h3>
-                        <div class="card-meta">
-                            <span>2024</span>
-                            <span>Fantasy</span>
-                        </div>
+                        <div class="card-info-row"><span>2024</span><span>Action / Fantasy</span></div>
                     </div>
                 </div>
-
                 <div class="movie-card">
-                    <div class="poster-wrapper">
-                        <span class="card-rating"><i class="fas fa-star"></i> 8.7</span>
-                        <img src="https://images.unsplash.com/photo-1578632767115-351597cf2477?q=80&w=400" alt="Jujutsu Kaisen Anime">
-                        <div class="play-icon"><i class="fas fa-play"></i></div>
-                    </div>
-                    <div class="card-info">
-                        <h3>Jujutsu Kaisen</h3>
-                        <div class="card-meta">
-                            <span>2023</span>
-                            <span>Supernatural</span>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="movie-card">
-                    <div class="poster-wrapper">
-                        <span class="card-rating"><i class="fas fa-star"></i> 8.9</span>
+                    <div class="poster">
+                        <span class="rating-badge"><i class="fas fa-star"></i> 8.9</span>
                         <img src="https://images.unsplash.com/photo-1627389955805-385a86657997?q=80&w=400" alt="One Piece Anime">
-                        <div class="play-icon"><i class="fas fa-play"></i></div>
+                        <div class="play-overlay"><div class="play-btn-circle"><i class="fas fa-play"></i></div></div>
                     </div>
-                    <div class="card-info">
+                    <div class="card-details">
                         <h3>One Piece</h3>
-                        <div class="card-meta">
-                            <span>Ongoing</span>
-                            <span>Adventure</span>
-                        </div>
+                        <div class="card-info-row"><span>Ongoing</span><span>Adventure</span></div>
+                    </div>
+                </div>
+                <div class="movie-card">
+                    <div class="poster">
+                        <span class="rating-badge"><i class="fas fa-star"></i> 8.7</span>
+                        <img src="https://images.unsplash.com/photo-1578632767115-351597cf2477?q=80&w=400" alt="Jujutsu Kaisen Anime">
+                        <div class="play-overlay"><div class="play-btn-circle"><i class="fas fa-play"></i></div></div>
+                    </div>
+                    <div class="card-details">
+                        <h3>Jujutsu Kaisen</h3>
+                        <div class="card-info-row"><span>2023</span><span>Supernatural</span></div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section class="category-section" id="movies">
-            <div class="section-title">
-                <h2><i class="fas fa-film"></i> Шилдэг Уран сайхны кино</h2>
-                <a href="#movies" class="view-all">Бүгдийг үзэх</a>
+        <section id="movies">
+            <div class="section-header">
+                <h2>Шилдэг Уран сайхны кино</h2>
             </div>
-
             <div class="movie-grid">
                 <div class="movie-card">
-                    <div class="poster-wrapper">
-                        <span class="card-rating"><i class="fas fa-star"></i> 8.5</span>
-                        <img src="https://images.unsplash.com/photo-1541562232579-51fca3bb4b0f?q=80&w=400" alt="Oppenheimer Movie">
-                        <div class="play-icon"><i class="fas fa-play"></i></div>
+                    <div class="poster">
+                        <span class="rating-badge"><i class="fas fa-star"></i> 8.5</span>
+                        <img src="https://images.unsplash.com/photo-1478720568477-152d9b164e26?q=80&w=400" alt="Oppenheimer Movie">
+                        <div class="play-overlay"><div class="play-btn-circle"><i class="fas fa-play"></i></div></div>
                     </div>
-                    <div class="card-info">
+                    <div class="card-details">
                         <h3>Oppenheimer</h3>
-                        <div class="card-meta">
-                            <span>2023</span>
-                            <span>Biography</span>
-                        </div>
+                        <div class="card-info-row"><span>2023</span><span>Biography / Drama</span></div>
                     </div>
                 </div>
-
                 <div class="movie-card">
-                    <div class="poster-wrapper">
-                        <span class="card-rating"><i class="fas fa-star"></i> 9.0</span>
-                        <img src="https://images.unsplash.com/photo-1478720568477-152d9b164e26?q=80&w=400" alt="The Dark Knight Movie">
-                        <div class="play-icon"><i class="fas fa-play"></i></div>
+                    <div class="poster">
+                        <span class="rating-badge"><i class="fas fa-star"></i> 9.0</span>
+                        <img src="https://images.unsplash.com/photo-1531259683007-016a7b628fc3?q=80&w=400" alt="The Dark Knight">
+                        <div class="play-overlay"><div class="play-btn-circle"><i class="fas fa-play"></i></div></div>
                     </div>
-                    <div class="card-info">
+                    <div class="card-details">
                         <h3>The Dark Knight</h3>
-                        <div class="card-meta">
-                            <span>2008</span>
-                            <span>Action</span>
-                        </div>
+                        <div class="card-info-row"><span>2008</span><span>Action / Crime</span></div>
                     </div>
                 </div>
-
                 <div class="movie-card">
-                    <div class="poster-wrapper">
-                        <span class="card-rating"><i class="fas fa-star"></i> 8.8</span>
-                        <img src="https://images.unsplash.com/photo-1534447677768-be436bb09401?q=80&w=400" alt="Inception Movie">
-                        <div class="play-icon"><i class="fas fa-play"></i></div>
+                    <div class="poster">
+                        <span class="rating-badge"><i class="fas fa-star"></i> 8.8</span>
+                        <img src="https://images.unsplash.com/photo-1534447677768-be436bb09401?q=80&w=400" alt="Inception">
+                        <div class="play-overlay"><div class="play-btn-circle"><i class="fas fa-play"></i></div></div>
                     </div>
-                    <div class="card-info">
+                    <div class="card-details">
                         <h3>Inception</h3>
-                        <div class="card-meta">
-                            <span>2010</span>
-                            <span>Sci-Fi</span>
-                        </div>
+                        <div class="card-info-row"><span>2010</span><span>Sci-Fi / Thriller</span></div>
                     </div>
                 </div>
-                
                 <div class="movie-card">
-                    <div class="poster-wrapper">
-                        <span class="card-rating"><i class="fas fa-star"></i> 8.7</span>
-                        <img src="https://images.unsplash.com/photo-1626814026160-2237a95fc5a0?q=80&w=400" alt="The Matrix Movie">
-                        <div class="play-icon"><i class="fas fa-play"></i></div>
+                    <div class="poster">
+                        <span class="rating-badge"><i class="fas fa-star"></i> 8.7</span>
+                        <img src="https://images.unsplash.com/photo-1626814026160-2237a95fc5a0?q=80&w=400" alt="The Matrix">
+                        <div class="play-overlay"><div class="play-btn-circle"><i class="fas fa-play"></i></div></div>
                     </div>
-                    <div class="card-info">
+                    <div class="card-details">
                         <h3>The Matrix</h3>
-                        <div class="card-meta">
-                            <span>1999</span>
-                            <span>Sci-Fi</span>
-                        </div>
+                        <div class="card-info-row"><span>1999</span><span>Sci-Fi</span></div>
                     </div>
                 </div>
             </div>
         </section>
-
     </main>
 
     <footer>
-        <div class="footer-content">
-            <div class="footer-brand">
-                <a href="/" class="logo">
-                    <i class="fas fa-play-circle"></i> Kino<span>DB</span>
-                </a>
-                <p>Таны очих дуртай хамгийн шилдэг кино болон анимэ мэдээллийн сан. Шинэ содон бүхнийг нэг дороос.</p>
+        <div class="footer-main">
+            <div class="footer-desc">
+                <a href="/" class="logo"><i class="fas fa-play-circle"></i> Kino<span>DB</span></a>
+                <p>Дэлхийн шилдэг кино, анимэ мэдээллийн сан. Бид танд хамгийн шилдэг контентыг Premium чанартайгаар хүргэхийг зорилгоо болгон ажилладаг.</p>
             </div>
-            
-            <div class="footer-links-group">
-                <div class="footer-links">
-                    <h4>Ангилал</h4>
-                    <ul>
-                        <li><a href="#anime">Шилдэг Анимэ</a></li>
-                        <li><a href="#movies">Шилдэг Кино</a></li>
-                        <li><a href="#">Одоо гарч буй</a></li>
-                    </ul>
-                </div>
-                <div class="footer-links">
-                    <h4>Тусламж</h4>
-                    <ul>
-                        <li><a href="#">Бидний тухай</a></li>
-                        <li><a href="#">Холбоо барих</a></li>
-                        <li><a href="#">Үйлчилгээний нөхцөл</a></li>
-                        <li><a href="#">Нууцлалын бодлого</a></li>
-                    </ul>
+            <div class="footer-links">
+                <h4>Ангилал</h4>
+                <ul>
+                    <li><a href="#anime">Шилдэг Анимэ</a></li>
+                    <li><a href="#movies">Шилдэг Кино</a></li>
+                    <li><a href="#">Одоо гарч буй</a></li>
+                    <li><a href="#">Трэнд кинонууд</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h4>Тусламж</h4>
+                <ul>
+                    <li><a href="#about">Бидний тухай</a></li>
+                    <li><a href="#">Холбоо барих</a></li>
+                    <li><a href="#">Нууцлалын бодлого</a></li>
+                    <li><a href="#">Үйлчилгээний нөхцөл</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h4>Биднийг дагах</h4>
+                <div style="display: flex; gap: 15px; font-size: 22px; margin-top: 10px;">
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-youtube"></i></a>
+                    <a href="#"><i class="fab fa-tiktok"></i></a>
                 </div>
             </div>
         </div>
         <div class="footer-bottom">
-            &copy; 2026 KinoDB. Бүх эрх хуулиар хамгаалагдсан.
+            &copy; 2026 KinoDB Premium Entertainment. Бүх эрх хуулиар хамгаалагдсан.
         </div>
     </footer>
 
